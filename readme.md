@@ -21,7 +21,7 @@ Creating a Node.js command-line application that generates an HTML site after re
 **Installation:**
 
 
-To begin the application, you'll need to Node index.js on your local computer and have the repo cloned. Once you have that installed properly, you will need to open a terminal - either through VSCode or GitBash and input the command "node index.js". This will trigger a series of user prompts that you will need to complete.
+To begin the application, you'll need to Node index.js on your local computer and have the repo cloned. Once you have that installed properly, you will need to open a terminal - either through VSCode and input the command "node index.js". This will trigger a series of user prompts that you will need to complete.
 
 ## 🔗 Screenshot and Live demonstration
 ![TeamScreenShot](https://user-images.githubusercontent.com/88334438/163729502-fef1cdb1-944e-4544-af2a-67fcdc386bff.PNG)
