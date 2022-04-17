@@ -1,4 +1,5 @@
 const generateEmployees = (employeeList) => {
+    console.log('WAT', employeeList)
     const generatedEmployees = [];
     for (let i = 0; i < employeeList.length; i++) {
         let employee =
@@ -11,10 +12,10 @@ const generateEmployees = (employeeList) => {
                     <h6>
                         <span> ` 
                         
-        if(employeeList[i].getRole() === "Manager") {
+        if(employeeList[i].role === "Manager") {
             employee += `<i class="fas fa-crown"></i> </span> ${employeeList[i].role}
             `
-        } else if(employeeList[i].getRole() === "Engineer") {
+        } else if(employeeList[i].role === "Engineer") {
             employee += `<i class="fas fa-tools"></i> </span> ${employeeList[i].role}
             `
         } else {

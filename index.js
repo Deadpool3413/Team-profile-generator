@@ -63,6 +63,12 @@ const managerQuestions = [
     
 ];
 
+const Choices = {
+    ENGINEER: 'Add an Engineer.',
+    INTERN: 'Add an Intern.',
+    FINISH: 'Finish building my Team.'
+}
+
 const addEmployee = () => {
     return inquirer.prompt([
         {
@@ -70,23 +76,23 @@ const addEmployee = () => {
             name: 'nextStep',
             message: 'Which of the following steps would you like to do next?',
             choices: [
-                'Add an Engineer.',
-                'Add an Intern.',
-                'Finish building my Team'
+                Choices.ENGINEER,
+                Choices.INTERN,
+                Choices.FINISH
             ]
         }
     ])
     .then(data => {
         switch (data.nextStep) {
-            case 'Add an Engineer.':
+            case Choices.ENGINEER:
                 addEngineer();
                 break;
-            case 'Add an Intern.':
+            case Choices.INTERN:
                 addIntern();
                 break;
-            case 'Finish building my Team.':
+            case Choices.FINISH:
                 const pageHtml = generatePage(employeeList);
-                fs.writeFile(pageHtml);
+                fs.writeFile('./dist/test.html', pageHtml, console.log);
                 break;
         }
     })
@@ -146,11 +152,9 @@ const addEngineer= () => {
         }
     ])
     .then(data =>{
-        const teamMember = new Engineer(data);
-        console.log(data);
-        console.log(teamMember.role);
+        
+        const teamMember = new Engineer(data.name, data.id, data.email, data.username, 'Engineer');
         employeeList.push(teamMember);
-        console.log(employeeList);
         addEmployee();
     })
 };
@@ -209,11 +213,8 @@ const addIntern = () => {
         }
     ])
     .then(data => {
-        const teamMember = new Intern(data);
-        console.log(data);
-        console.log(teamMember.role);
+        const teamMember = new Intern(data.name, data.id, data.email, data.school, 'Intern');
         employeeList.push(teamMember);
-        console.log(employeeList);
         addEmployee();
     })
 };
@@ -224,11 +225,11 @@ function init() {
 
 init()
     .then(data => {
-        return new Manager(data);
+        return new Manager(data.name, data.id, data.email, data.officeNumber, 'Manager');
     })
-    .then(data => {
-        const managerEntry = data;
-        console.log(data);
+    .then(manager => {
+        const managerEntry = manager;
+        console.log(manager);
         employeeList.push(managerEntry);
         console.log(employeeList);
     })
